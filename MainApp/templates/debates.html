@@ -1,0 +1,12 @@
+<h1>Debates view</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div id="debate_comments">
+{% for comment in comments.all %}
+    {{ comment.name }} - {{ comment.date_added }}
+    <br/>
+    {{ comment.body }}
+{% endfor %}
+
+{% endblock %}
+</div>

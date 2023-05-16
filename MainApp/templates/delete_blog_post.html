@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>delete entry</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button>Delete Blog Post?</button>
+        </form>
+    {% else %}
+        Restricted!
+    {% endif %}
+{% else %}
+Not allowed
+{% endif %}
+{% endblock %}

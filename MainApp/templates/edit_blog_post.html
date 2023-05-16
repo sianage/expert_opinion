@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit entry</h1>
+name = {{ post.category }}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Save</button>
+        </form>
+    {% else %}
+        Restricted!
+    {% endif %}
+{% else %}
+Not Allowed!
+{% endif %}
+{% endblock %}

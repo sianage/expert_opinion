@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Economics Blogs</h1>
+<ul style="list-style-type:square" id="blog_list">
+{% for post in object_list %}
+    {% if post.category == 'Economics' %}
+    </br>
+    <li id="list_id">Title: <a href="{% url 'article_details' post.pk %}">{{ post.title }}</a>
+        <br/>Author: {{ post.author }}<br/>{{ post.body|slice:":20" }}...<br/>
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <a href="{% url 'edit_post' post.pk %}">Edit</a>
+                <a href="{% url 'delete_post' post.pk %}">Delete</a>
+            {% endif %}
+        {% endif %}
+    </li>
+    {% endif %}
+{% endfor %}
+</ul>
+{% endblock %}
